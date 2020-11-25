@@ -1,0 +1,28 @@
+.box-login{
+    width: 50%;
+    box-shadow: 5px 5px 10px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding: 15px;
+    margin-top: -2%;
+    margin-left: 25%;
+    margin-bottom: 5%;
+
+}
+
+.botao{
+    display: flex;
+    justify-content: center;
+    
+}
+.logo-login{
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    box-shadow: 5px -5px 10px;
+    margin-bottom: 10px;
+    width: 50%;
+    margin-top: 3%;
+    margin-left: 25%;
+   
+}
+

@@ -1,0 +1,12 @@
+{
+  "Users": [
+    {
+      "userName": "PizzaMan",
+      "pass": "pizzaMan123",
+      "Email": "pizza.mania@gmail.com",
+      "id": 1
+    }
+  ],
+  "Pizzas": [],
+  "Bebidas": []
+}
