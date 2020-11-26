@@ -1,49 +1,22 @@
-import React,{useState} from 'react';
-import { useHistory, Link } from 'react-router-dom';
-import swal from 'sweetalert2'
 import axios from 'axios';
-import Navbar from '../components/Navbar';
-import preImg from '../assets/img-pergunta.jpg'
+import React,{useState} from 'react';
+import Modal from 'react-modal'
+import Swal from 'sweetalert2';
 
 
+function ModalEdit({isOpen, dataP}){
 
-function CadPizza(){
-
-    const[pizza, setPizza] = useState("");
-    const[desc, setDesc] = useState("");
-    const[valor, setValor] = useState("");
-    const[imgPrev, setImgPrev] = useState(preImg);
-    const history = useHistory();
+    const[pizza, setPizza] = useState(dataP.pizza);
+    const[desc, setDesc] = useState(dataP.descrição);
+    const[valor, setValor] = useState(dataP.preço);
+    const[imgPrev, setImgPrev] = useState(dataP.imagem);
     const data = {
         "pizza": pizza,
         "descrição": desc,
         "preço": valor,
         "imagem": imgPrev
     }
-
-    function handleSubmit(e){
-      e.preventDefault();
-
-      if(pizza === "" || desc === "" || valor === ""){
-        swal.fire({
-          icon: 'warning',
-          title: 'Preencha todos os campos para cadastrar a pizza',
-        })
-      }else{
-        axios.post('http://localhost:3333/Pizzas/', data).then(response => {
-          swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Pizza cadastrada',
-            showConfirmButton: false,
-            timer: 1500
-
-          }).then(() => {
-            history.push('/lista-Pizzas')
-          })
-        })
-      }
-    }
+    console.log(dataP.pizza);
 
     function handleImg(e){
         let reader = new FileReader();
@@ -54,10 +27,24 @@ function CadPizza(){
         reader.readAsDataURL(file);
     }
 
+    async function handleEditModal(dataP){
+       try{
+            await axios.put(`http://localhost:3333/Pizzas/${dataP.id}`, data)
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Dados Atualizados',
+                showConfirmButton: false,
+                timer: 1000
+            })
+            window.location.reload(true)
+       }catch{
+        alert('Erro ao Atualizar dados da Pizza')
+       }
+    }
 
     return(
-        <>
-            <Navbar/>
+        <Modal isOpen={isOpen}>
             <div className="container">
             <form className="form" encType="multipart/form-data">
             <div className="box-cadPizza">
@@ -72,7 +59,7 @@ function CadPizza(){
                 </div>
 
                 <div className="input-field">
-                <input value={desc} 
+                <input value={data.descrição} 
                 onChange={(e)=>{
                     setDesc(e.target.value)  
                 }}
@@ -97,16 +84,19 @@ function CadPizza(){
                
                 <div className="botao">
                 <button class="btn waves-effect waves-light" type="submit" name="action"
-                onClick={handleSubmit}>Cadastrar
+                onClick={() => {handleEditModal(dataP)}}>Salvar alterações
                 <i class="material-icons right"></i>
-                </button></div>
+                </button>
+                <button onClick={() => {window.location.reload(true)}}>Cancelar</button>
+                </div>
                 <br></br>
 
             </div>
         </form>
         </div>
-      </>
-    );
+        </Modal>
+    )
 }
 
-export default CadPizza;
+
+export default ModalEdit;

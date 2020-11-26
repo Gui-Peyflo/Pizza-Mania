@@ -7,8 +7,8 @@ function Home(){
         <>
         <Navbar />
         
-        <div className='container'>
-            <div className='banner'>
+        <div className='container  banner'>
+            <div>
             <img src={banner} className='img-banner'></img>
             </div>
             <br/><br/>

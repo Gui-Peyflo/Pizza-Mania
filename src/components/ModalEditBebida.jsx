@@ -1,46 +1,20 @@
-import React,{useState} from 'react';
-import { useHistory, Link } from 'react-router-dom';
-import swal from 'sweetalert2'
 import axios from 'axios';
-import Navbar from '../components/Navbar';
-import preImg from '../assets/pergunta-beb.png'
+import React,{useState} from 'react';
+import Modal from 'react-modal'
+import Swal from 'sweetalert2';
 
-function CadBeb(){
 
-    const[bebida, setBebida] = useState("");
-    const[valor, setValor] = useState("");
-    const[imgPrev, setImgPrev] = useState(preImg);
-    const history = useHistory();
+function ModalEditBeb({isOpen, dataB}){
+
+    const[bebida, setBebida] = useState(dataB.bebida);
+    const[valor, setValor] = useState(dataB.preço);
+    const[imgPrev, setImgPrev] = useState(dataB.imagem);
     const data = {
         "bebida": bebida,
         "preço": valor,
         "imagem": imgPrev
     }
-
-
-    function handleSubmit(e){
-        e.preventDefault();
-  
-        if(bebida === "" || valor === ""){
-          swal.fire({
-            icon: 'warning',
-            title: 'Preencha todos os campos para cadastrar a Bebida',
-          })
-        }else{
-          axios.post('http://localhost:3333/Bebidas/', data).then(response => {
-            swal.fire({
-              position: 'center',
-              icon: 'success',
-              title: 'Bebida cadastrada',
-              showConfirmButton: false,
-              timer: 1500
-  
-            }).then(() => {
-              history.push('/lista-Bebidas')
-            })
-          })
-        }
-      }
+    console.log(dataB.pizza);
 
     function handleImg(e){
         let reader = new FileReader();
@@ -51,11 +25,29 @@ function CadBeb(){
         reader.readAsDataURL(file);
     }
 
+    async function handleEditModal(dataB){
+       try{
+            await axios.put(`http://localhost:3333/Bebidas/${dataB.id}`, data).
+            then((response) => {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Dados Atualizados',
+                    showConfirmButton: false,
+                    timer: 1000
+                })
+            }).then((response) => {
+                window.location.reload(true)
+            })
+           
+           
+       }catch{
+        alert('Erro ao Atualizar dados da Bebida')
+       }
+    }
 
     return(
-        <>
-         <>
-            <Navbar/>
+        <Modal isOpen={isOpen}>
             <div className="container">
             <form className="form" encType="multipart/form-data">
             <div className="box-cadBebida">
@@ -66,7 +58,7 @@ function CadBeb(){
                     setBebida(e.target.value)  
                 }}
                 id="bebida" type="text" className="validate"/>
-                <label className="active" htmlfor="bebida">Bebida</label>
+                <label className="active" htmlfor="bebida">Nome da Bebida</label>
                 </div>
 
                 <div className="input-field">
@@ -80,23 +72,25 @@ function CadBeb(){
                 </div>
 
                 <div>
-                    <input type="file" id='fileItem' required onChange={handleImg}/>
+                    <input type="file" id='fileItem' onChange={handleImg}/>
                     <img src={imgPrev} width="200px"  height="200px"/>
                 </div>
                
                 <div className="botao">
                 <button class="btn waves-effect waves-light" type="submit" name="action"
-                onClick={handleSubmit}>Cadastrar
+                onClick={() => {handleEditModal(dataB)}}>Salvar alterações
                 <i class="material-icons right"></i>
-                </button></div>
+                </button>
+                <button onClick={() => {window.location.reload(true)}}>Cancelar</button>
+                </div>
                 <br></br>
 
             </div>
         </form>
         </div>
-      </>
-        </>
+        </Modal>
     )
 }
 
-export default CadBeb;
+
+export default ModalEditBeb;
