@@ -81,13 +81,15 @@ function ModalEdit({isOpen, dataP}){
                     <input type="file" id='fileItem' onChange={handleImg}/>
                     <img src={imgPrev} width="200px"  height="200px"/>
                 </div>
+                <br/>
+                <br/>
                
                 <div className="botao">
                 <button class="btn waves-effect waves-light" type="submit" name="action"
                 onClick={() => {handleEditModal(dataP)}}>Salvar alterações
                 <i class="material-icons right"></i>
                 </button>
-                <button onClick={() => {window.location.reload(true)}}>Cancelar</button>
+                <button class="btn grey waves-effect waves-light" onClick={() => {window.location.reload(true)}}>Cancelar</button>
                 </div>
                 <br></br>
 

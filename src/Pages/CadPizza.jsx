@@ -94,7 +94,8 @@ function CadPizza(){
                     <input type="file" id='fileItem' onChange={handleImg}/>
                     <img src={imgPrev} width="200px"  height="200px"/>
                 </div>
-               
+               <br/>
+               <br/>
                 <div className="botao">
                 <button class="btn waves-effect waves-light" type="submit" name="action"
                 onClick={handleSubmit}>Cadastrar

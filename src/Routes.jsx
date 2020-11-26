@@ -7,7 +7,9 @@ import ListBebidas from './Pages/ListBebidas';
 import ListPizzas from './Pages/ListPizzas';
 import Loading from './Pages/Loading';
 import Login from './Pages/Login';
+import NewUser from './Pages/NewUser';
 import Produtos from './Pages/Produtos';
+import ForgetPsw from './Pages/ForgetPsw';
 
 
 function Routes(){
@@ -23,6 +25,8 @@ function Routes(){
                 <Route path='/cadastro-bebidas' component={CadBeb}></Route>
                 <Route path='/produtos' component={Produtos}></Route>
                 <Route path='/loading' component={Loading}></Route>
+                <Route path='/Novo-usuário' component={NewUser}></Route>
+                <Route path='/recuperação-de-senha' component={ForgetPsw}></Route>
             </Switch>
         </BrowserRouter>
     )

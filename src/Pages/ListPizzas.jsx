@@ -59,10 +59,10 @@ function ListPizzas(){
                                 <th className='descricao'>{data.descrição}</th>
                                 <th>{data.preço}</th>
 
-                                <th>
-                                    <button className="btn " type="submit" name="action" onClick={() => {handleEdit(data)}}>Editar<i className="material-icons right"></i></button>
+                                <th className='edit-del'>
+                                    <button className="btn edit" type="submit" name="action" onClick={() => {handleEdit(data)}}>Editar<i className="material-icons right"></i></button>
 
-                                    <button className="btn" type="submit" name="action" onClick={() => {handleDel(data)}}>Excluir
+                                    <button className="btn del" type="submit" name="action" onClick={() => {handleDel(data)}}>Excluir
                                     <i className="material-icons right"></i>
                                     </button>
                                 </th>

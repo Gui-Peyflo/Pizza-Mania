@@ -74,10 +74,10 @@ function Login(){
               <br></br>
               <br></br>
             <p>
-              <Link to="/ForgetPsw">Esqueceu sua senha?</Link>
+              <Link to="/recuperação-de-senha">Esqueceu sua senha?</Link>
               <br>
               </br>
-              <Link to="/NewUser">É novo por aqui?</Link>
+              <Link to="/Novo-usuário">É novo por aqui?</Link>
             </p>
         </div>
       </form>

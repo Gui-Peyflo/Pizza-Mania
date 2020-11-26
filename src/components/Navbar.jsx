@@ -19,15 +19,17 @@ function Navbar(){
             
             <Link to="/home" className="brand-logo"><img src={logo} className='logo responsive-img'></img></Link>
             <a data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons"><h3>menu</h3></i></a>
-            <Link to="/produtos"><ul className="right hide-on-med-and-down">
-                <li className='item-menu'>Produtos</li>
+            <ul className="right hide-on-med-and-down menu">
+            <li className='item-menu'><Link to="/produtos">Produtos</Link></li>
+            <li className='item-menu'><Link to="/">Sair</Link> </li>
             </ul>
-            </Link>
+            
             
         </nav>
 
         <ul className="sidenav" id="mobile-demo">
             <li className='item-menu-responsivo'><Link to="/produtos"><h3>Produtos</h3></Link></li>
+            <li className='item-menu-responsivo'><Link to="/"><h3>Sair</h3></Link></li>
         </ul>
       </>
     )

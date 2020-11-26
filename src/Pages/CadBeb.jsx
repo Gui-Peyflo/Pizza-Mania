@@ -83,14 +83,13 @@ function CadBeb(){
                     <input type="file" id='fileItem' required onChange={handleImg}/>
                     <img src={imgPrev} width="200px"  height="200px"/>
                 </div>
-               
+               <br/>
+               <br/>
                 <div className="botao">
                 <button class="btn waves-effect waves-light" type="submit" name="action"
                 onClick={handleSubmit}>Cadastrar
                 <i class="material-icons right"></i>
                 </button></div>
-                <br></br>
-
             </div>
         </form>
         </div>
