@@ -19,7 +19,7 @@ function Routes(){
                 <Route path='/home' component={Home}></Route>
                 <Route path='/lista-Pizzas' component={ListPizzas}></Route>
                 <Route path='/lista-Bebidas' component={ListBebidas}></Route>
-                <Route path='/cadastro-pizza' component={CadPizza}></Route>
+                <Route path='/cadastro-pizzas' component={CadPizza}></Route>
                 <Route path='/cadastro-bebidas' component={CadBeb}></Route>
                 <Route path='/produtos' component={Produtos}></Route>
                 <Route path='/loading' component={Loading}></Route>
