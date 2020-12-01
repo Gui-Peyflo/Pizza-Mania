@@ -18,10 +18,10 @@ function ForgetPsw(){
 
             axios.get(`http://localhost:3333/Users/?email=${emailR}`).then((response) => {
                 const user = response.data;
-                console.log(user[0].id)
+                console.log(user)
                 
 
-                if(user != []){
+                if(user.length != 0){
                     if(senha != cSenha){
                         Swal.fire({
                             position: 'center',
@@ -30,7 +30,6 @@ function ForgetPsw(){
                             showConfirmButton: false,
                             timer: 1200
                           })
-
                     }else{
                         const data ={
                             "userName":user[0].userName,
@@ -79,8 +78,8 @@ function ForgetPsw(){
                     <input value={emailR} onChange={(e)=>{
                         setEmailR(e.target.value)
                     }}
-                id="email" type="email" className="validate"/>
-                    <label className="active" htmlfor="email">Email</label>
+                id="email" type="email" required className="validate"/>
+                    <label className="active" htmlFor="email">Email</label>
                 </div>
 
                 </div>
@@ -90,7 +89,7 @@ function ForgetPsw(){
                         setSenha(e.target.value)
                     }}
                 id="senha" type="password" className="validate"/>
-                <label className="active" htmlfor="senha">Nova Senha</label>
+                <label className="active" htmlFor="senha">Nova Senha</label>
                 </div>
 
                 <div className="input-field">
@@ -98,7 +97,7 @@ function ForgetPsw(){
                         setCsenha(e.target.value)
                     }}
                 id="password" type="password" className="validate"/>
-                <label className="active" htmlfor="password">Confirmação da Nova Senha</label>
+                <label className="active" htmlFor="password">Confirmação da Nova Senha</label>
                 </div>
                 <div className="botao">
                 <button class="btn waves-effect waves-light" type="submit" name="action"
